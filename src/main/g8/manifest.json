@@ -1,0 +1,23 @@
+{
+  "name": "$name$",
+  "version": "$version$",
+  "description": "$description$",
+  "background_page": "background.html",
+  "browser_action": {
+    "popup": "popup.html"
+  },
+  "permissions": [
+    // "bookmarks",
+    // "chrome://favicon/",
+    // "contextMenus",
+    // "cookies",
+    // "experimental",
+    // "geolocation",
+    // "history",
+    // "idle",
+    "notifications",
+    "tabs",
+    // "unlimitedStorage",
+    "https://ajax.googleapis.com/"
+   ]
+}

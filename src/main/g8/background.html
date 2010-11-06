@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+      /** simple function that draws an icon on a 19x19 canvas */
+      var drawIcon = function() {
+        var canvas = document.getElementById("icon"),
+            ctx = canvas.getContext('2d'),
+            x = 0, y = 0, h = canvas.height, w = canvas.width;
+        
+        ctx.fillStyle = "rgba(255,255,255,255)";
+        ctx.fillRect(x, y, h, w);
+        
+        ctx.fillStyle = "rgba(255,0,132,255)";
+        ctx.font = "bold 12px sans-serif"; 
+        ctx.fillText("hi", w / 4, (h / 4) * 3);
+        
+        return ctx.getImageData(0, 0, canvas.width, canvas.height);
+      };
+      /** called with background page is ready */
+      var init = function() {
+        /* background processing here */
+        
+        /* boiler plate for dynamic icons. most people will use an 
+           actual image for an icon with the "icons" property of manifest.json
+           or the "default_icon" property of "browser_action" */
+        chrome.tabs.onCreated.addListener(function(tab) {
+          chrome.browserAction.setIcon({imageData:drawIcon(), tabId:tab.id});
+        });
+        chrome.browserAction.setIcon({imageData:drawIcon()});
+      };
+    </script>
+  </head>
+  <body onload="init()">
+    <canvas id="icon" width="19" height="19"></canvas>
+  </body>
+</html>
